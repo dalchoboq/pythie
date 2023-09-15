@@ -50,7 +50,7 @@ def get_youtube_transcripts(query: str, vid_nb: int, top_videos: str, lang: str)
     else:
         search_query = query + " review"
         videos_lang = "en"
-    ytb_api_key = st.secrets[youtube_api_key]
+    ytb_api_key = st.secrets["youtube_api_key"]
 
     youtube = build('youtube', 'v3', developerKey=ytb_api_key)
     search_response = youtube.search().list(
