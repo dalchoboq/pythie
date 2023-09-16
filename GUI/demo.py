@@ -5,18 +5,13 @@ import importlib
 # importlib.reload(GUI.utils)
 from GUI.utils import get_youtube_transcripts, save_transcripts, build_transcripts, delete_transcripts, get_comments
 
-# import GUI.models
-# importlib.reload(GUI.models)
-from GUI.models import PaLM
-
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain, TransformChain
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import TextLoader, DirectoryLoader
 from langchain.vectorstores import Chroma
-from langchain.embeddings import VertexAIEmbeddings
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.chains import RetrievalQAWithSourcesChain
-from langchain.llms import VertexAI
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.chat_models import AzureChatOpenAI
 from dotenv import load_dotenv
@@ -864,7 +859,11 @@ def build_questions_generation(llm_model, lang):
 
     return chain
 
-def prepare_docs(files_path: str , videos_info: list, ext_path: str):
+def prepare_docs(files_path: str ,
+                 videos_info: list,
+                 ext_path: str,
+                 embedding_model: str
+                 ):
     logging.info('Started building embedding index')
     start_time = time.time()
     loader = DirectoryLoader(files_path + ext_path[:-1], glob=f"*.txt", loader_cls=TextLoader)
@@ -877,7 +876,7 @@ def prepare_docs(files_path: str , videos_info: list, ext_path: str):
     docs = text_splitter.split_documents(documents)
     texts = [doc.page_content for doc in docs]
     metadata = [doc.metadata for doc in docs]
-    embeddings = VertexAIEmbeddings()
+    embeddings = embedding_model
     docsearch = Chroma.from_texts(texts, embeddings, metadatas=metadata)
     logging.info(f'Finished building embedding index: {time.time() - start_time}s')
     return docsearch

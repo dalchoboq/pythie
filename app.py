@@ -113,6 +113,7 @@ with st.form("my_form"):
     else:
         disable_inputquery=False
         llm_model = ChatOpenAI(temperature=0.5, openai_api_key=openai_api_key)
+        embedding_model = OpenAIEmbeddings( openai_api_key=openai_api_key)
     query = st.text_input(label="Input your product name",
                           placeholder="Ex: Google pixel 7",
                           disabled=disable_inputquery)
@@ -156,9 +157,9 @@ def questions_suggestion(global_summary_chain_results, query, _model_llm, lang):
     return suggested_questions
 
 @st.cache_resource
-def videos_embedding(path, videos_info, ext_path):
+def videos_embedding(path, videos_info, ext_path, _model_embedding):
     delete_old_embeddings(path)
-    res = prepare_docs(path, videos_info, ext_path)
+    res = prepare_docs(path, videos_info, ext_path, _model_embedding)
     return res
 
 @st.cache_data
