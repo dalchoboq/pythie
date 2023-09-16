@@ -6,6 +6,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_oauth import OAuth2Component
 from langchain.chat_models import ChatOpenAI
+from langchain.embeddings import OpenAIEmbeddings
 
 from dotenv import load_dotenv
 
