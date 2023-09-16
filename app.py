@@ -318,7 +318,10 @@ if query:
 
     st.markdown("<h3 style='color: #070038;'>Chat with the AI on your product videos</h3>", unsafe_allow_html=True)
 
-    docsearch = videos_embedding(main_path, analyzed_vids, ext_path="/data/videos_transcripts/main_product/")
+    docsearch = videos_embedding(path=main_path,
+                                 videos_info=analyzed_vids,
+                                 ext_path="/data/videos_transcripts/main_product/",
+                                 _model_embedding=embedding_model)
 
     questions_generation_chain_results = questions_suggestion(global_summary_chain_results, query, llm_model, lang_code)
     suggested_questions = questions_generation_chain_results['suggested_questions']
