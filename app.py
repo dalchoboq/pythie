@@ -80,7 +80,6 @@ st.markdown("<h7 style='text-align: center; color: #d60987;'>*Refresh the page i
 
 
 with st.sidebar:
-    st.markdown("<h5 style='color: #070038;'>OpenAI API Key</h5>", unsafe_allow_html=True)
     openai_api_key = st.text_input(label="OpenAI API Key", type="password")
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
