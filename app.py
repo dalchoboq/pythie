@@ -73,12 +73,16 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 components.html(header_logo_html())
 
 add_logo_from_local(main_path + "/resources/LogoPythie.png")
-add_title("Retrieve Customer Insights for Powerful Content Generation")
-add_subtitle("Harness YouTube's potential with GenAI for social listening <br>and actionable customer insights that can power your content generation.")
+
+add_title("Discover the Truth About Products Instantly")
+add_subtitle("Gen AI-Powered YouTube Review Analysis in Seconds!")
 st.markdown("<h7 style='text-align: center; color: #d60987;'>*Refresh the page if you wish to try another product*<h7>", unsafe_allow_html=True)
 
 
 with st.sidebar:
+    st.markdown("<h5 style='color: #070038;'>About:</h5>", unsafe_allow_html=True)
+    st.write("With this app, you can analyze product review videos on YouTube and extract insights that highlight them. All you have to do is type the name of your product, click 'analyze,' and witness ChatGPT uncover key information, highlighting crucial details within seconds!")
+    st.markdown("<h5 style='color: #070038;'>OpenAI API Key</h5>", unsafe_allow_html=True)
     openai_api_key = st.text_input(label="OpenAI API Key", type="password")
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
 
