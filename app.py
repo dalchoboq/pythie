@@ -86,27 +86,27 @@ with st.form("my_form"):
     st.markdown("<h3 style='color: #070038;'>Pick your product 🔎</h3>", unsafe_allow_html=True)
     max_videos = 5
     top_videos = "relevance"
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
         with st.expander("Products examples"):
             st.write("""
             - Beauty:
-                - Skincare: Yves rocher lipikar
-                - Makeup: CHANEL les beiges
+                - Yves rocher lipikar
+                - CHANEL les beiges
 
             - Tech:
-                - Phone: Google Pixel 7
-                - Game console: Xbox Series X
-                - Video game: Far cry 6
+                - Google Pixel 7
+                - Xbox Series X
+                - Far cry 6
 
             - Fashion: 
-                - Bag : Louis Vuitton Alma BB
+                - Louis Vuitton Alma BB
 
             - B2B : 
-                - Service : sodexo meal card
+                - Sodexo meal card
             """)
 
-    with col4:
+    with col3:
         language = st.radio("Videos Language", ["English", "French"])
     if not openai_api_key:
         disable_inputquery=True
